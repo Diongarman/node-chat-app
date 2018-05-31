@@ -21,9 +21,10 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('newMessage', generateMessage('admin', 'New user joined chat.'));
 
-    socket.on('createMessage', (messageFromClient) => {
+    socket.on('createMessage', (messageFromClient, callback) => {
         console.log('new message from client: ', messageFromClient)
         io.emit('newMessage', generateMessage(messageFromClient.from, messageFromClient.text))
+        callback('This is acknowledgement of receipt from the server');
     })
 
     socket.on('disconnect', () => {
