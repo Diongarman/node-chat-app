@@ -3,7 +3,7 @@ const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 
-var {generateMessage} = require('./utils/message.js');
+var {generateMessage, generateLocationMessage} = require('./utils/message.js');
 
 const app = express();
 var server = http.createServer(app);
@@ -25,7 +25,11 @@ io.on('connection', (socket) => {
         console.log('new message from client: ', messageFromClient)
         io.emit('newMessage', generateMessage(messageFromClient.from, messageFromClient.text))
         callback('This is acknowledgement of receipt from the server');
-    })
+    });
+
+    socket.on('createLocationMessage', (locationFromClient) => {
+        io.emit('newLocationMessage', generateLocationMessage('Admin', locationFromClient.lat, locationFromClient.long));
+    });
 
     socket.on('disconnect', () => {
         console.log('Client disconnected');

@@ -4,6 +4,19 @@
 
 <head>
     <meta charset="utf-8">
+    <style>
+    
+    #map {
+        height: 33%;
+        width: 33%
+      }
+
+        html, body {
+    height: 100%;
+    margin: 40;
+    padding: 0;
+  }
+    </style>
 </head>
 
 
@@ -15,11 +28,65 @@
     <form id="message-form">
         <input name="message" type="text" placeholder="Message"/>
         <button>Send</button>
-
     </form>
+    <button id="send-location">Send location</button>
+    
+    
+    
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/libs/jquery-3.3.1.min.js"></script>
     <script src="/js/index.js"></script>
+    
+    
+    <div id="map"></div>
+
+
+<!--
+<script>
+
+
+var map, marker, infoWindow;
+var locationCoords = {lat:52.583331, lng:-0.249999}
+var centralPark = {lat:52.583331, lng:-0.249999}
+
+function initMap() {
+    map = new google.maps.Map(
+        document.getElementById('map'), {center: centralPark, zoom: 12});
+
+    marker = new google.maps.Marker({position: locationCoords, map: map});
+
+    // Create info window content.
+    var content = document.createElement('div');
+    content.textContent = 'new renderer ';
+    var zoomInButton = document.createElement('button');
+    zoomInButton.textContent = 'zoom in';
+    content.appendChild(zoomInButton);
+
+
+      // Create open an info window attached to the marker.
+    infoWindow = new google.maps.InfoWindow({content: content});
+    infoWindow.open(map, marker);
+
+
+      // When the zoom-in button is clicked, zoom in and pan to the Opera House.
+// The zoom and pan animations are smoother with the new renderer.
+    zoomInButton.onclick = function() {
+        map.setZoom(Math.max(15, map.getZoom() + 1));
+        map.panTo(centralPark);
+    };
+
+};
+
+</script>
+-->
+
+
+<!--
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-KafGeMGeEcjgfWA1BeljNhpj5-6cnVU&v=3.31&callback=initMap">
+    </script>
+-->
+
 </body>   
 </html>
