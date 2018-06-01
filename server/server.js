@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
     socket.on('createMessage', (messageFromClient, callback) => {
         console.log('new message from client: ', messageFromClient)
         io.emit('newMessage', generateMessage(messageFromClient.from, messageFromClient.text))
-        callback('This is acknowledgement of receipt from the server');
+        callback();
     });
 
     socket.on('createLocationMessage', (locationFromClient) => {

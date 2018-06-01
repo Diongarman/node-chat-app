@@ -4,6 +4,9 @@
 
 <head>
     <meta charset="utf-8">
+    <!--
+
+        this is for google Map rendering
     <style>
     
     #map {
@@ -17,19 +20,34 @@
     padding: 0;
   }
     </style>
+
+-->
+
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 
-<body>
-    <p>Welcome to the chat app</p>
+<body class="chat">
+    <div class="chat__sidebar">
+        <h3>People</h3>
+        <div id="users"></div>
+    </div>
 
-    <ol id="message-log"></ol>
+    <div class="chat__main">
+            <ol id="message-log" class="chat__messages"></ol>
 
-    <form id="message-form">
-        <input name="message" type="text" placeholder="Message"/>
-        <button>Send</button>
-    </form>
-    <button id="send-location">Send location</button>
+
+    <div class="chat__footer">
+        <form id="message-form">
+            <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+            <button>Send</button>
+        </form>
+        <button id="send-location">Send location</button>
+    </div>
+    </div>
+
+
+
     
     
     
@@ -39,54 +57,6 @@
     <script src="/js/index.js"></script>
     
     
-    <div id="map"></div>
-
-
-<!--
-<script>
-
-
-var map, marker, infoWindow;
-var locationCoords = {lat:52.583331, lng:-0.249999}
-var centralPark = {lat:52.583331, lng:-0.249999}
-
-function initMap() {
-    map = new google.maps.Map(
-        document.getElementById('map'), {center: centralPark, zoom: 12});
-
-    marker = new google.maps.Marker({position: locationCoords, map: map});
-
-    // Create info window content.
-    var content = document.createElement('div');
-    content.textContent = 'new renderer ';
-    var zoomInButton = document.createElement('button');
-    zoomInButton.textContent = 'zoom in';
-    content.appendChild(zoomInButton);
-
-
-      // Create open an info window attached to the marker.
-    infoWindow = new google.maps.InfoWindow({content: content});
-    infoWindow.open(map, marker);
-
-
-      // When the zoom-in button is clicked, zoom in and pan to the Opera House.
-// The zoom and pan animations are smoother with the new renderer.
-    zoomInButton.onclick = function() {
-        map.setZoom(Math.max(15, map.getZoom() + 1));
-        map.panTo(centralPark);
-    };
-
-};
-
-</script>
--->
-
-
-<!--
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-KafGeMGeEcjgfWA1BeljNhpj5-6cnVU&v=3.31&callback=initMap">
-    </script>
--->
-
+    <!--<div id="map"></div>-->
 </body>   
 </html>
