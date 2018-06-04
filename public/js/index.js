@@ -4,13 +4,20 @@ var socket = io();
 socket.on('newLocationMessage', function (locationMessage) {
 
     console.log(locationMessage);
-    var li = jQuery('<li></li>');
+    var formattedTime = moment(locationMessage.createdAt).format('h:mm a')
+    var li = document.createElement("li");;
     var a = document.createElement('a');
     var linkText = document.createTextNode("my location");
     a.appendChild(linkText);
     a.href = locationMessage.url
-    a.target="_blank"
-    li.append(a);
+    a.target="_blank";
+    var text = document.createTextNode(`${locationMessage.from} ${formattedTime}: `);
+
+    li.appendChild(text);
+    li.appendChild(a);
+
+    
+
     jQuery('#message-log').append(li);
 
 });
@@ -31,9 +38,9 @@ socket.on('disconnect', function () {
 
 socket.on('newMessage', function (message) {
     console.log('New message: ', message);
-
+    var formattedTime = moment(message.createdAt).format('h:mm a')
     var li = jQuery('<li></li>');
-    li.text(`${message.from}: ${message.text}`);
+    li.text(`${message.from}: ${message.text} at ${formattedTime}`);
 
     jQuery('#message-log').append(li)
 });
